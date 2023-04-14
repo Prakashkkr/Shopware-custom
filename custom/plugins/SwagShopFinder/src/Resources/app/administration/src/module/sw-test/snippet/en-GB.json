@@ -1,0 +1,46 @@
+{
+  "sw-test": {
+    "general": {
+      "mainMenuItemList": "tests",
+      "mainMenuItemGeneral": "tests",
+      "placeholderSearchBar": "Search tests..."
+    },
+    "list": {
+      "texttestOverview": "Test_Demo",
+      "textTotaltest": "No tests | One test | {count} tests",
+      "buttonAddtest": "Add test",
+      "columnName": "Name",
+      "columnCourse": "Course",
+      "columnMobile_no": "Mobile_no",
+      "columnImage": "Image",
+      "columnDescription": "Description"
+    },
+    "detail": {
+      "textHeadline": "New test",
+      "textMediaSelection": "Media selection",
+      "buttonCancel": "Cancel",
+      "buttonSave": "Save",
+      "cardTitletestInfo": "test information",
+      "labelName": "Name",
+      "labelCourse": "Course",
+      "labelDescription": "Description",
+      "labelMobile_no": "Mobile_no",
+      "labelLink": "Website",
+      "placeholderName": "Enter test name...",
+      "placeholderCourse": "Enter test course...",
+
+      "placeholderDescription": "Enter description...",
+      "placeholderMobile_no": "Enter test mobile_no...",
+      "messageSaveSuccess": "test \"{name}\" has been saved.",
+      "labelLogo": "Logo",
+      "labelUseAsLogo": "Use as Logo"
+    }
+  },
+  "sw-privileges": {
+    "permissions": {
+      "swag_shop_finder": {
+        "label": "tests"
+      }
+    }
+  }
+}
