@@ -9,22 +9,21 @@ use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
 use Shopware\Core\System\Country\Aggregate\CountryState\CountryStateDefinition;
 use SwagShipFinder\Core\Content\ShipFinder\SwagShipFinderDefinition;
 
-class StateExtension extends EntityExtension
+class CountryStateExtension extends EntityExtension
 {
     public function extendFields(FieldCollection $collection): void
     {
         $collection->add(
             new OneToManyAssociationField(
-                'countryStatesId',
+                'countryStateId',
                 SwagShipFinderDefinition::class,
-                'state_id',
-                'id')
+                'country_state_id'
+            )
         );
     }
 
     public function getDefinitionClass(): string
     {
-
         return CountryStateDefinition::class;
     }
 }

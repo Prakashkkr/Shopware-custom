@@ -5,19 +5,19 @@ namespace SwagShipFinder\Core\Content\ShipFinder\Aggregate\SwagShipTranslation;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityCollection;
 
 /**
- * @method void                add(SwagShipFinderTransEntity $entity)
- * @method void                set(string $key, SwagShipFinderTransEntity $entity)
- * @method SwagShipFinderTransEntity[]    getIterator()
- * @method SwagShipFinderTransEntity[]    getElements()
- * @method SwagShipFinderTransEntity|null get(string $key)
- * @method SwagShipFinderTransEntity|null first()
- * @method SwagShipFinderTransEntity|null last()
+ * @method void                add(ArrayEntity $entity)
+ * @method void                set(string $key, ArrayEntity $entity)
+ * @method ArrayEntity[]    getIterator()
+ * @method ArrayEntity[]    getElements()
+ * @method ArrayEntity|null get(string $key)
+ * @method ArrayEntity|null first()
+ * @method ArrayEntity|null last()
  */
  #[Package('core')]
 class SwagShipFinderTransCollection extends EntityCollection
 {
     protected function getExpectedClass(): string
     {
-        return SwagShipFinderTransEntity::class;
+        return ArrayEntity::class;
     }
 }

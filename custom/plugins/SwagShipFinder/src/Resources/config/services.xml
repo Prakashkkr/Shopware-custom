@@ -5,6 +5,14 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <!-- Definition -->
+        <service id="SwagShipFinder\Core\Content\ShipFinder\SwagShipFinderDefinition">
+            <tag name="shopware.entity.definition" entity="swag_ship_finder"/>
+        </service>
+        <!-- Translation -->
+        <service id="SwagShipFinder\Core\Content\ShipFinder\Aggregate\SwagShipTranslation\SwagShipFinderTransDefinition">
+            <tag name="shopware.entity.definition" entity="swag_ship_finder_trans"/>
+        </service>
         <!-- Country extension -->
         <service id="SwagShipFinder\Core\Content\Extension\CountryExtension">
             <tag name="shopware.entity.extension"/>
@@ -13,25 +21,20 @@
         <service id="SwagShipFinder\Core\Content\Extension\ProductExtension">
             <tag name="shopware.entity.extension"/>
         </service>
-        <!--  State Extension -->
-        <service id="SwagShipFinder\Core\Content\Extension\StateExtension">
-            <tag name="shopware.entity.extension"/>
-        </service>
+
         <!--  MediaExtension -->
         <service id="SwagShipFinder\Core\Content\Extension\MediaExtension">
             <tag name="shopware.entity.extension"/>
         </service>
-        <!-- Translation -->
-        <service id="SwagShipFinder\Core\Content\ShipFinder\Aggregate\SwagShipTranslation\SwagShipFinderTransDefinition">
-            <tag name="shopware.entity.definition" entity="swag_ship_finder_trans"/>
-        </service>
+
         <!-- language -->
         <service id="SwagShipFinder\Core\Content\Extension\LanguageExtension">
             <tag name="shopware.entity.extension"/>
         </service>
-        <!-- Definition -->
-        <service id="SwagShipFinder\Core\Content\ShipFinder\SwagShipFinderDefinition">
-            <tag name="shopware.entity.definition" entity="swag_ship_finder"/>
+
+        <!--  State Extension -->
+        <service id="SwagShipFinder\Core\Content\Extension\CountryStateExtension">
+            <tag name="shopware.entity.extension"/>
         </service>
     </services>
 </container>

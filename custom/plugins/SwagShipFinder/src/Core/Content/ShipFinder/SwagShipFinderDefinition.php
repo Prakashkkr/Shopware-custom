@@ -4,6 +4,8 @@ namespace SwagShipFinder\Core\Content\ShipFinder;
 
 use Shopware\Core\Content\Media\MediaDefinition;
 use Shopware\Core\Content\Product\ProductDefinition;
+use Shopware\Core\System\Country\Aggregate\CountryState\CountryStateDefinition;
+use Shopware\Core\System\Country\CountryDefinition;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityDefinition;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\BoolField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\FkField;
@@ -18,8 +20,6 @@ use Shopware\Core\Framework\DataAbstractionLayer\Field\ReferenceVersionField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslatedField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslationsAssociationField;
 use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
-use Shopware\Core\System\Country\Aggregate\CountryState\CountryStateDefinition;
-use Shopware\Core\System\Country\CountryDefinition;
 use SwagShipFinder\Core\Content\ShipFinder\Aggregate\SwagShipTranslation\SwagShipFinderTransDefinition;
 
 
@@ -46,15 +46,15 @@ class SwagShipFinderDefinition extends EntityDefinition
                 (new BoolField('active','active')),
                 (new TranslatedField('name')),
                 (new TranslatedField('city')),
-                new FkField('state_id','countryStatesId',CountryStateDefinition::class),
                 new FkField('country_id','countryId',CountryDefinition::class),
+                new FkField('country_state_id','countryStateId',CountryStateDefinition::class),
                 new FkField('media_id','mediaId',MediaDefinition::class),
                 new FkField('product_id','productId',ProductDefinition::class),
                 (new ReferenceVersionField(ProductDefinition::class))->addFlags(new ApiAware(), new Inherited()),
 
         //country
              new ManyToOneAssociationField(
-                 'countryId',
+                 'country',
                  'country_id',
                  CountryDefinition::class,
                  'id',
@@ -62,12 +62,21 @@ class SwagShipFinderDefinition extends EntityDefinition
              ),
         // state
             new ManyToOneAssociationField(
-              'countryStatesId',
-              'state_id',
-              CountryStateDefinition::class,
-              'id',
-              false
+                'countryState',
+                'country_state_id',
+                CountryStateDefinition::class,
+                'id',
+                false
             ),
+            //  Media
+            new OneToOneAssociationField(
+                'swagMedia',
+                'media_id',
+                'id',
+                MediaDefinition::class,
+                false
+            ),
+
         // product
             new ManyToOneAssociationField(
                 'productIds',
@@ -76,14 +85,7 @@ class SwagShipFinderDefinition extends EntityDefinition
                 'id',
                 false
             ),
-        //  Media
-            new OneToOneAssociationField(
-                'swagMedia',
-                'media_id',
-                'id',
-                MediaDefinition::class,
-                false
-            ),
+
         //Translation
         new TranslationsAssociationField(
             SwagShipFinderTransDefinition::class,

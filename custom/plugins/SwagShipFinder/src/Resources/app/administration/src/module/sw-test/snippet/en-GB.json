@@ -1,0 +1,45 @@
+{
+  "sw-test": {
+    "general": {
+      "mainMenuItemList": "Tests",
+      "mainMenuItemGeneral": "Tests",
+      "placeholderSearchBar": "Search tests..."
+    },
+    "list": {
+      "textTestOverview": "Tests",
+      "textTotalTest": "No tests | One test | {count} tests",
+      "buttonAddTest": "Add test",
+      "columnName": "Name",
+      "columnCity": "City",
+      "columnCountryStateId": "State",
+      "columnMediaId" : "Media",
+      "columnCountryId": "Country",
+      "columnProductId": "Product"
+    },
+    "detail": {
+      "textHeadline": "New test",
+      "textMediaSelection": "Media selection",
+      "buttonCancel": "Cancel",
+      "buttonSave": "Save",
+      "cardTitleTestInfo" : "Test information",
+      "labelName": "Name",
+      "labelCountryId": "Country",
+      "labelCity": "City",
+      "labelCountryStateId": "State Id",
+      "labelMediaId": "Media Id",
+      "labelProductId": "Product Id",
+      "placeholderName": "Enter your name...",
+      "placeholderCity": "Enter city name...",
+      "messageSaveSuccess": "Test \"{name}\" has been saved.",
+
+      "labelUseAsLogo": "Use as Logo"
+    }
+  },
+  "sw-privileges": {
+    "permissions": {
+      "swag_ship_finder": {
+        "label": "Tests"
+      }
+    }
+  }
+}

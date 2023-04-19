@@ -4,11 +4,11 @@ namespace SwagShipFinder\Core\Content\ShipFinder;
 
 use Shopware\Core\Framework\DataAbstractionLayer\Entity;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityIdTrait;
-use Shopware\Core\System\Country\Aggregate\CountryState\CountryStateEntity;
 use Shopware\Core\System\Country\CountryEntity;
-use Shopware\Core\Content\Product\ProductEntity;
+use Shopware\Core\System\Country\Aggregate\CountryState\CountryStateEntity;
 use Shopware\Core\Content\Media\MediaEntity;
-use SwagShipFinder\Core\Content\ShipFinder\Aggregate\SwagShipTranslation\SwagShipFinderTransCollection;
+use Shopware\Core\Content\Product\ProductEntity;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityCollection;
 
 class SwagShipFinderEntity extends Entity
 {
@@ -22,32 +22,32 @@ class SwagShipFinderEntity extends Entity
     /**
      * @var bool|null
      */
-    protected ?bool $active;
+    protected $active;
 
     /**
      * @var string
      */
-    protected string $name;
+    protected $name;
 
     /**
      * @var string
      */
-    protected string $city;
-
-    /**
-     * @var CountryStateEntity|null
-     */
-    protected ?CountryStateEntity $countryStatesId;
-
-    /**
-     * @var CountryEntity|null
-     */
-    protected ?CountryEntity $countryId;
+    protected $city;
 
     /**
      * @var string|null
      */
-    protected ?string $mediaId;
+    protected $countryId;
+
+    /**
+     * @var string|null
+     */
+    protected $countryStateId;
+
+    /**
+     * @var string|null
+     */
+    protected $mediaId;
 
     /**
      * @var string|null
@@ -55,9 +55,14 @@ class SwagShipFinderEntity extends Entity
     protected ?string $productId;
 
     /**
-     * @var ProductEntity|null
+     * @var CountryEntity|null
      */
-    protected ?ProductEntity $productIds;
+    protected ?CountryEntity $country;
+
+    /**
+     * @var CountryStateEntity|null
+     */
+    protected ?CountryStateEntity $countryState;
 
     /**
      * @var MediaEntity|null
@@ -65,9 +70,14 @@ class SwagShipFinderEntity extends Entity
     protected ?MediaEntity $swagMedia;
 
     /**
-     * @var SwagShipFinderTransCollection|null
+     * @var ProductEntity|null
      */
-    protected ?SwagShipFinderTransCollection $translations;
+    protected ?ProductEntity $productIds;
+
+    /**
+     * @var EntityCollection|null
+     */
+    protected ?EntityCollection $translations;
 
     /**
      * @var \DateTimeInterface
@@ -124,24 +134,24 @@ class SwagShipFinderEntity extends Entity
         $this->city = $city;
     }
 
-    public function getCountryStatesId(): ?CountryStateEntity
-    {
-        return $this->countryStatesId;
-    }
-
-    public function setCountryStatesId(?CountryStateEntity $countryStatesId): void
-    {
-        $this->countryStatesId = $countryStatesId;
-    }
-
-    public function getCountryId(): ?CountryEntity
+    public function getCountryId(): ?string
     {
         return $this->countryId;
     }
 
-    public function setCountryId(?CountryEntity $countryId): void
+    public function setCountryId(?string $countryId): void
     {
         $this->countryId = $countryId;
+    }
+
+    public function getCountryStateId(): ?string
+    {
+        return $this->countryStateId;
+    }
+
+    public function setCountryStateId(?string $countryStateId): void
+    {
+        $this->countryStateId = $countryStateId;
     }
 
     public function getMediaId(): ?string
@@ -164,14 +174,24 @@ class SwagShipFinderEntity extends Entity
         $this->productId = $productId;
     }
 
-    public function getProductIds(): ?ProductEntity
+    public function getCountry(): ?CountryEntity
     {
-        return $this->productIds;
+        return $this->country;
     }
 
-    public function setProductIds(?ProductEntity $productIds): void
+    public function setCountry(?CountryEntity $country): void
     {
-        $this->productIds = $productIds;
+        $this->country = $country;
+    }
+
+    public function getCountryState(): ?CountryStateEntity
+    {
+        return $this->countryState;
+    }
+
+    public function setCountryState(?CountryStateEntity $countryState): void
+    {
+        $this->countryState = $countryState;
     }
 
     public function getSwagMedia(): ?MediaEntity
@@ -184,12 +204,22 @@ class SwagShipFinderEntity extends Entity
         $this->swagMedia = $swagMedia;
     }
 
-    public function getTranslations(): ?SwagShipFinderTransCollection
+    public function getProductIds(): ?ProductEntity
+    {
+        return $this->productIds;
+    }
+
+    public function setProductIds(?ProductEntity $productIds): void
+    {
+        $this->productIds = $productIds;
+    }
+
+    public function getTranslations(): ?EntityCollection
     {
         return $this->translations;
     }
 
-    public function setTranslations(SwagShipFinderTransCollection $translations): void
+    public function setTranslations(EntityCollection $translations): void
     {
         $this->translations = $translations;
     }

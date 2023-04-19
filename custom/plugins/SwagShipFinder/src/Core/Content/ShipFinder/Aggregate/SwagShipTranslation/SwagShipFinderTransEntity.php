@@ -4,7 +4,7 @@ namespace SwagShipFinder\Core\Content\ShipFinder\Aggregate\SwagShipTranslation;
 
 use Shopware\Core\Framework\DataAbstractionLayer\Entity;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityIdTrait;
-use SwagShipFinder\Core\Content\ShipFinder\SwagShipFinderEntity;
+use Shopware\Core\Framework\Struct\ArrayEntity;
 use Shopware\Core\System\Language\LanguageEntity;
 
 class SwagShipFinderTransEntity extends Entity
@@ -39,12 +39,12 @@ class SwagShipFinderTransEntity extends Entity
     /**
      * @var string
      */
-    protected $languageId;
+    protected string $languageId;
 
     /**
-     * @var SwagShipFinderEntity|null
+     * @var ArrayEntity|null
      */
-    protected ?SwagShipFinderEntity $swagShipFinder;
+    protected ?ArrayEntity $swagShipFinder;
 
     /**
      * @var LanguageEntity|null
@@ -111,12 +111,12 @@ class SwagShipFinderTransEntity extends Entity
         $this->languageId = $languageId;
     }
 
-    public function getSwagShipFinder(): ?SwagShipFinderEntity
+    public function getSwagShipFinder(): ?ArrayEntity
     {
         return $this->swagShipFinder;
     }
 
-    public function setSwagShipFinder(?SwagShipFinderEntity $swagShipFinder): void
+    public function setSwagShipFinder(?ArrayEntity $swagShipFinder): void
     {
         $this->swagShipFinder = $swagShipFinder;
     }
