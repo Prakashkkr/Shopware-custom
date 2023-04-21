@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!--BlogCategory Translation -->
+        <service id="SwagBlogFinder\Core\Content\BlogCategory\Aggregate\BlogCategoryTranslation\BlogCategoryTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="blog_category_translation"/>
+        </service>
+
+        <!--BlogFinder Translation -->
+        <service id="SwagBlogFinder\Core\Content\BlogFinder\Aggregate\BlogFinderTranslation\BlogFinderTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="blog_finder_translation"/>
+        </service>
+
+        <!-- language -->
+        <service id="SwagBlogFinder\Core\Content\Extension\LanguageExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+    </services>
+</container>
