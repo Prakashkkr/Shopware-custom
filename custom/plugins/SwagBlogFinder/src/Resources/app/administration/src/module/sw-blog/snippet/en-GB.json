@@ -1,0 +1,39 @@
+{
+  "sw-blog": {
+    "general": {
+      "mainMenuItemList": "Blogs",
+      "mainMenuItemGeneral": "Blogs",
+      "placeholderSearchBar": "Search blogs..."
+    },
+    "list": {
+      "textblogOverview": "Blogs",
+      "textTotalblog": "No blogs | One blog | {count} blogs",
+      "buttonAddBlog": "Add blog",
+      "columnName": "Blog",
+      "columnLink": "Website"
+    },
+    "detail": {
+      "textHeadline": "New blog",
+      "textMediaSelection": "Media selection",
+      "buttonCancel": "Cancel",
+      "buttonSave": "Save",
+      "cardTitleBlogInfo": "Blog information",
+      "labelName": "Name",
+      "labelDescription": "Description",
+      "labelLink": "Website",
+      "placeholderName": "Enter blog name...",
+      "placeholderDescription": "Enter description...",
+      "placeholderLink": "Enter blog website...",
+      "messageSaveSuccess": "blog \"{name}\" has been saved.",
+      "labelLogo": "Logo",
+      "labelUseAsLogo": "Use as Logo"
+    }
+  },
+  "sw-privileges": {
+    "permissions": {
+      "blog_finder": {
+        "label": "Blogs"
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace SwagBlogFinder\Core\Content\BlogFinder\Aggregate\BlogCategoryTranslation;
+namespace SwagBlogFinder\Core\Content\BlogFinder\Aggregate\BlogFinderTranslation;
 
 use Shopware\Core\Framework\DataAbstractionLayer\EntityTranslationDefinition;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Required;
@@ -16,6 +16,14 @@ class BlogFinderTranslationDefinition extends EntityTranslationDefinition
     {
 
         return self::ENTITY_NAME;
+    }
+    public function getEntityClass(): string
+    {
+        return BlogFinderTranslationEntity::class;
+    }
+    public function getCollectionClass(): string
+    {
+        return BlogFinderTranslationCollection::class;
     }
 
     public function getParentDefinitionClass(): string

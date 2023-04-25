@@ -3,14 +3,12 @@ declare(strict_types=1);
 
 namespace SwagBlogFinder\Core\Content\Extension;
 
-
-
 use Shopware\Core\Framework\DataAbstractionLayer\EntityExtension;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\OneToManyAssociationField;
 use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
 use Shopware\Core\System\Language\LanguageDefinition;
 use SwagBlogFinder\Core\Content\BlogCategory\Aggregate\BlogCategoryTranslation\BlogCategoryTranslationDefinition;
-use SwagBlogFinder\Core\Content\BlogFinder\Aggregate\BlogCategoryTranslation\BlogFinderTranslationDefinition;
+use SwagBlogFinder\Core\Content\BlogFinder\Aggregate\BlogFinderTranslation\BlogFinderTranslationDefinition;
 
 class LanguageExtension extends EntityExtension
 {
@@ -32,7 +30,6 @@ class LanguageExtension extends EntityExtension
         );
 
     }
-
     public function getDefinitionClass(): string
     {
 

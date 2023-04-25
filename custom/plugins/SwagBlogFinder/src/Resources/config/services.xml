@@ -5,6 +5,17 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+
+        <!-- Definition -->
+        <service id="SwagBlogFinder\Core\Content\BlogFinder\BlogFinderDefinition">
+            <tag name="shopware.entity.definition" entity="blog_finder"/>
+        </service>
+
+        <!-- Definition -->
+        <service id="SwagBlogFinder\Core\Content\BlogCategory\BlogCategoryDefinition">
+            <tag name="shopware.entity.definition" entity="blog_category"/>
+        </service>
+
         <!--BlogCategory Translation -->
         <service id="SwagBlogFinder\Core\Content\BlogCategory\Aggregate\BlogCategoryTranslation\BlogCategoryTranslationDefinition">
             <tag name="shopware.entity.definition" entity="blog_category_translation"/>
@@ -18,6 +29,16 @@
         <!-- language -->
         <service id="SwagBlogFinder\Core\Content\Extension\LanguageExtension">
             <tag name="shopware.entity.extension"/>
+        </service>
+
+        <!-- Product Extension -->
+        <service id="SwagBlogFinder\Core\Content\Extension\ProductExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <!-- Mapping -->
+        <service id="SwagBlogFinder\Core\Content\Mapping\BlogFinderMappingDefinition">
+            <tag name="shopware.entity.definition" entity="blog_finder_mapping"/>
         </service>
 
     </services>

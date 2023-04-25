@@ -111,7 +111,6 @@ Component.register('sw-test-demo-list', {
                 criteria.resetSorting();
             }
 
-            console.log(this.testdemos)
             return this.testdemoRepository.search(criteria)
                 .then(searchResult => {
                     this.testdemos = searchResult;

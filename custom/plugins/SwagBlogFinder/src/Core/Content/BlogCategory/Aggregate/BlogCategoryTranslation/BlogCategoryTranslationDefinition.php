@@ -5,7 +5,7 @@ namespace SwagBlogFinder\Core\Content\BlogCategory\Aggregate\BlogCategoryTransla
 use Shopware\Core\Framework\DataAbstractionLayer\EntityTranslationDefinition;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\StringField;
 use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
-use SwagBlogFinder\Core\Content\BlogFinder\BlogCategoryDefinition;
+use SwagBlogFinder\Core\Content\BlogCategory\BlogCategoryDefinition;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Required;
 
 class BlogCategoryTranslationDefinition extends EntityTranslationDefinition
@@ -23,6 +23,14 @@ class BlogCategoryTranslationDefinition extends EntityTranslationDefinition
         return BlogCategoryDefinition::class;
     }
 
+    public function getEntityClass(): string
+    {
+        return BlogCategoryTranslationEntity::class;
+    }
+    public function getCollectionClass(): string
+    {
+        return BlogCategoryTranslationCollection::class;
+    }
     protected function defineFields(): FieldCollection
     {
         return new FieldCollection([
