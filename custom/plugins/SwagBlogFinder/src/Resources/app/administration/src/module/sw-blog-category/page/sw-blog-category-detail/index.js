@@ -3,8 +3,6 @@ import template from './sw-blog-category-detail.html.twig';
 
 const { Component, Mixin, Data: { Criteria } } = Shopware;
 
-const { mapPropertyErrors } = Shopware.Component.getComponentHelper();
-
 Component.register('sw-blog-category-detail', {
     template,
 
@@ -104,7 +102,6 @@ Component.register('sw-blog-category-detail', {
             };
         },
 
-        ...mapPropertyErrors('blogCategory', ['name']),
     },
 
     watch: {

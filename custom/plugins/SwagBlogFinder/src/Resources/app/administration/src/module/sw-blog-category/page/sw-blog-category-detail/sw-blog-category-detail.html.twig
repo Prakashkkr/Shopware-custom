@@ -93,7 +93,7 @@
                             :label="$tc('sw-blog-category.detail.labelName')"
                             :placeholder="placeholder(blogCategory, 'name', $tc('sw-blog-category.detail.placeholderName'))"
                             name="name"
-{#                            validation="required"#}
+                            validation="required"
 {#                            required#}
 {#                            :error="blogNameError"#}
                             :disabled="!acl.can('blog_category.editor')"

@@ -43,22 +43,66 @@ Component.register('sw-blog-list', {
                 label: 'sw-blog.list.columnName',
                 inlineEdit: 'string',
                 primary: true,
-            }, {
+            },{
+                property: 'description',
+                dataIndex: 'description',
+                allowResize: true,
+                // routerLink: 'sw.blog.detail',
+                label: 'sw-blog.list.columnDescription',
+                inlineEdit: 'string',
+                primary: true,
+            },{
+                property: 'Author',
+                dataIndex: 'author',
+                allowResize: true,
+                // routerLink: 'sw.blog.detail',
+                label: 'sw-blog.list.columnAuthor',
+                inlineEdit: 'string',
+                primary: true,
+            },{
+                property: 'release_date',
+                dataIndex: 'release_date',
+                allowResize: true,
+                // routerLink: 'sw.blog.detail',
+                label: 'sw-blog.list.columnRelease_date',
+                inlineEdit: 'string',
+                primary: true,
+            },{
+                property: 'blogCategory.name',
+                // dataIndex: 'blogCategoryId',
+                // allowResize: true,
+                // routerLink: 'sw.blog.detail',
+                label: 'sw-blog.list.columnBlogCategoryId',
+                inlineEdit: 'string',
+                primary: true,
+            },{
+                property: 'productId.name',
+                // dataIndex: 'productId',
+                // allowResize: true,
+                routerLink: 'sw.blog.detail',
+                label: 'sw-blog.list.columnProductId',
+                inlineEdit: 'string',
+                primary: true,
+            },
+
+                {
                 property: 'active',
-                label: 'sw-test-demo.list.columnActive',
+                label: 'sw-blog.list.columnActive',
                 inlineEdit: 'boolean',
                 allowResize: true,
                 align: 'center',
             }];
         },
 
-        blogCriteria() {
-            const blogCriteria = new Criteria(this.page, this.limit);
+        blogCategoryCriteria() {
+            const blogCategoryCriteria = new Criteria(this.page, this.limit);
+            blogCategoryCriteria.addAssociation('blogCategory');
+            // blogCategoryCriteria.addAssociation('product');
 
-            blogCriteria.setTerm(this.term);
-            blogCriteria.addSorting(Criteria.sort(this.sortBy, this.sortDirection, this.naturalSorting));
+            blogCategoryCriteria.setTerm(this.term);
+            blogCategoryCriteria.addSorting(Criteria.sort(this.sortBy, this.sortDirection, this.naturalSorting));
 
-            return blogCriteria;
+            return blogCategoryCriteria;
         },
     },
 
@@ -70,7 +114,7 @@ Component.register('sw-blog-list', {
         async getList() {
             this.isLoading = true;
 
-            const criteria = await this.addQueryScores(this.term, this.blogCriteria);
+            const criteria = await this.addQueryScores(this.term, this.blogCategoryCriteria);
 
             if (!this.entitySearchable) {
                 this.isLoading = false;

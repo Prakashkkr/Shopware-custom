@@ -38,11 +38,8 @@ Component.register('sw-blog-category-list', {
             return [{
                 property: 'name',
                 dataIndex: 'name',
-                allowResize: true,
-                routerLink: 'sw.blog.category.detail',
                 label: 'sw-blog-category.list.columnName',
                 inlineEdit: 'string',
-                primary: true,
             }];
         },
 

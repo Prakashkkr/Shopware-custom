@@ -8,23 +8,18 @@
     "list": {
       "textblogCategoryOverview": "BlogCategorys",
       "textTotalblog": "No blogCategorys | One blog | {count} blogCategorys",
-      "buttonAddBlog": "Add blog",
-      "columnName": "Blog",
-      "columnLink": "Website"
+      "buttonAddblogCategory": "Add category",
+      "columnName": "Name"
     },
     "detail": {
-      "textHeadline": "New blog",
+      "textHeadline": "New blog Category",
       "textMediaSelection": "Media selection",
       "buttonCancel": "Cancel",
       "buttonSave": "Save",
-      "cardTitleBlogInfo": "Blog information",
+      "cardTitleblogCategoryInfo": "Blog Category information",
       "labelName": "Name",
-      "labelDescription": "Description",
-      "labelLink": "Website",
-      "placeholderName": "Enter blog name...",
-      "placeholderDescription": "Enter description...",
-      "placeholderLink": "Enter blog website...",
-      "messageSaveSuccess": "blog \"{name}\" has been saved.",
+      "placeholderName": "Enter category name...",
+      "messageSaveSuccess": "blogCategory \"{name}\" has been saved.",
       "labelLogo": "Logo",
       "labelUseAsLogo": "Use as Logo"
     }

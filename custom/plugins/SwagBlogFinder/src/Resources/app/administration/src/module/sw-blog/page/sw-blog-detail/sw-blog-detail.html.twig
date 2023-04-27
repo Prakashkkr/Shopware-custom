@@ -76,7 +76,7 @@
             {% block sw_blog_detail_base_basic_info_card %}
             <sw-card
                 position-identifier="sw-blog-detail-basic-info"
-                :title="$tc('sw-blog.detail.cardTitleblogInfo')"
+                :title="$tc('sw-blog.detail.cardTitleBlogInfo')"
             >
                 <sw-container
                     class="sw-blog-detail__container"
@@ -100,26 +100,88 @@
                         />
                         {% endblock %}
 
-                        {% block sw_blog_detail_base_info_field_description %}
-                            <sw-field
-                                v-model="blog.description"
-                                type="text"
-{#                                :label="$tc('sw-blog.detail.labelName')"#}
-{#                                :placeholder="placeholder(blog, 'name', $tc('sw-blog.detail.placeholderName'))"#}
-                                description="description"
-                                {#                            validation="required"#}
-                                {#                            required#}
-                                {#                            :error="blogNameError"#}
-                                :disabled="!acl.can('blog_finder.editor')"
-                            />
-                        {% endblock %}
-
                     </div>
+                    {% block sw_blog_detail_base_info_field_release_date%}
+                        <sw-field
+                                v-model="blog.release_date"
+                                type="date"
+                                :label="$tc('sw-blog.detail.labelRelease_date')"
+                                :placeholder="placeholder(blog, 'release_date', $tc('sw-blog.detail.placeholderRelease_date'))"
+                                name="release_date"
+                                {#validation="required"#}
+                                {#required#}
+                                {#:error="blogDescriptionError"#}
+                                :disabled="!acl.can('blog_finder.editor')"
+
+                        />
+                    {% endblock %}
+                    {% block sw_blog_detail_base_info_field_author%}
+                        <sw-field
+                                v-model="blog.Author"
+                                type="text"
+                                :label="$tc('sw-blog.detail.labelAuthor')"
+                                :placeholder="placeholder(blog, 'author', $tc('sw-blog.detail.placeholderAuthor'))"
+                                name="author"
+                                {#validation="required"#}
+                                {#required#}
+                                {#:error="blogDescriptionError"#}
+                                :disabled="!acl.can('blog_finder.editor')"
+                        />
+                    {% endblock %}
 
 
                 </sw-container>
 
 
+                {% block sw_blog_detail_base_info_category_field %}
+                    <sw-entity-single-select
+                        v-model="blog.blogCategoryId"
+                        class="sw-blog-detail__category-select"
+                        entity="blog_category"
+                        :criteria="blogCriteria"
+                        :label="$tc('sw-blog.detail.labelBlogCategoryId')"
+                        :placeholder="$tc('sw-blog.detail.placeholderBlogCategoryId')"
+                        :disabled="!acl.can('blog_finder.editor')"
+                        show-clearable-button
+                    />
+                {% endblock %}
+
+                {% block sw_blog_detail_base_info_product_field %}
+                    <sw-entity-multi-select
+                        size="medium"
+                        entity="product"
+                        :entity-collection="billingProducts"
+                        @change="setProductIds"
+                        class="sw-blog-detail__product-select"
+{#                        :criteria="productCriteria"#}
+                        :label="$tc('sw-blog.detail.labelProductId')"
+                        :placeholder="$tc('sw-blog.detail.placeholderProductId')"
+{#                        :disabled="!acl.can('blog_finder.editor')"#}
+{#                        show-clearable-button#}
+                    />
+                {% endblock %}
+
+                {% block sw_blog_detail_base_info_field_description %}
+                    <sw-text-editor
+                        v-model="blog.description"
+                        :label="$tc('sw-blog.detail.labelDescription')"
+                        :placeholder="placeholder(blog, 'description', $tc('sw-blog.detail.placeholderDescription'))"
+                        name="description"
+                        sanitize-input
+                        sanitize-field-name="blog_finder_translation.description"
+                        :disabled="!acl.can('blog_finder.editor')"
+                    />
+                {% endblock %}
+
+                {% block sw_blog_detail_base_info_active_field %}
+                    <sw-field
+                        v-model="blog.active"
+                        type="switch"
+                        bordered
+                        :disabled="!acl.can('blog_finder.editor')"
+                        :label="$tc('sw-blog.detail.labelActive')"
+                    />
+                {% endblock %}
             </sw-card>
             {% endblock %}
 

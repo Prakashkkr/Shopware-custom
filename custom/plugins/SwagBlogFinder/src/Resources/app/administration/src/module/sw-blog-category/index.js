@@ -44,7 +44,7 @@ Module.register('sw-blog-category', {
             props: {
                 default(route) {
                     return {
-                        blogId: route.params.id,
+                        blogCategoryId: route.params.id,
                     };
                 },
             },
