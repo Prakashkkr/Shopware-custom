@@ -200,7 +200,7 @@ Component.register('sw-blog-category-detail', {
                 this.isLoading = false;
                 this.isSaveSuccessful = true;
                 if (this.blogCategoryId === null) {
-                    this.$router.push({ name: 'sw.blog.category.detail', params: { id: this.blogCategory.id } });
+                    this.$router.push({ name: 'sw.blog.category.list', params: { id: this.blogCategory.id } });
                     return;
                 }
 

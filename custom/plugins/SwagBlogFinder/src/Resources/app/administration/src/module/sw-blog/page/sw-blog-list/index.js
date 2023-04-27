@@ -76,16 +76,6 @@ Component.register('sw-blog-list', {
                 inlineEdit: 'string',
                 primary: true,
             },{
-                property: 'productId.name',
-                // dataIndex: 'productId',
-                // allowResize: true,
-                routerLink: 'sw.blog.detail',
-                label: 'sw-blog.list.columnProductId',
-                inlineEdit: 'string',
-                primary: true,
-            },
-
-                {
                 property: 'active',
                 label: 'sw-blog.list.columnActive',
                 inlineEdit: 'boolean',
@@ -97,11 +87,8 @@ Component.register('sw-blog-list', {
         blogCategoryCriteria() {
             const blogCategoryCriteria = new Criteria(this.page, this.limit);
             blogCategoryCriteria.addAssociation('blogCategory');
-            // blogCategoryCriteria.addAssociation('product');
-
             blogCategoryCriteria.setTerm(this.term);
             blogCategoryCriteria.addSorting(Criteria.sort(this.sortBy, this.sortDirection, this.naturalSorting));
-
             return blogCategoryCriteria;
         },
     },

@@ -5,11 +5,11 @@ namespace SwagBlogFinder\Migration;
 use Doctrine\DBAL\Connection;
 use Shopware\Core\Framework\Migration\MigrationStep;
 
-class Migration1682424795 extends MigrationStep
+class Migration1682594291 extends MigrationStep
 {
     public function getCreationTimestamp(): int
     {
-        return 1682424795;
+        return 1682594291;
     }
 
     public function update(Connection $connection): void
@@ -73,7 +73,6 @@ CREATE TABLE `blog_finder_mapping` (
     CONSTRAINT `fk.blog_finder_mapping.blog_finder_id` FOREIGN KEY (`blog_finder_id`) REFERENCES `blog_finder` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
         ");
-
     }
 
     public function updateDestructive(Connection $connection): void

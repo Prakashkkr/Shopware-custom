@@ -1,8 +1,8 @@
 import template from './sw-blog-detail.html.twig';
 
-const { Component, Mixin, Data: { Criteria } } = Shopware;
-
-const { mapPropertyErrors } = Shopware.Component.getComponentHelper();
+const { Component, Mixin } = Shopware;
+const { EntityCollection, Criteria, Context } = Shopware.Data;
+const { mapPropertyErrors } = Component.getComponentHelper();
 
 Component.register('sw-blog-detail', {
     template,
@@ -35,6 +35,8 @@ Component.register('sw-blog-detail', {
             customFieldSets: [],
             isLoading: false,
             isSaveSuccessful: false,
+            billingProducts:null,
+            inputKey: 'productIds',
         };
     },
 
@@ -48,7 +50,25 @@ Component.register('sw-blog-detail', {
         identifier() {
             return this.placeholder(this.blog, 'name');
         },
+        productRepository() {
+            return this.repositoryFactory.create('product');
+        },
+        productIds: {
+            get() {
+                // this.ensureValueExist();
+                return this.blog.products || [];
+            },
+            set(productIds) {
+                // this.ensureValueExist();
+                this.blog.value = { ...this.blog.products, productIds };
+                // console.log(this.blog);
+            },
+        },
+        ...mapPropertyErrors('condition', ['value.operator', 'value.productIds']),
 
+        // currentError() {
+        //     return this.conditionValueOperatorError || this.conditionValueManufacturerIdsError;
+        // },
         blogIsLoading() {
             return this.isLoading || this.blog == null;
         },
@@ -56,10 +76,15 @@ Component.register('sw-blog-detail', {
         blogRepository() {
             return this.repositoryFactory.create('blog_finder');
         },
-
-        mediaRepository() {
-            return this.repositoryFactory.create('media');
+        productCriteria() {
+            const criteria = new Criteria(1, 25);
+            return criteria;
         },
+
+
+        // mediaRepository() {
+        //     return this.repositoryFactory.create('media');
+        // },
 
         customFieldSetRepository() {
             return this.repositoryFactory.create('custom_field_set');
@@ -74,9 +99,9 @@ Component.register('sw-blog-detail', {
             return criteria;
         },
 
-        mediaUploadTag() {
-            return `sw-blog-detail--${this.blog.id}`;
-        },
+        // mediaUploadTag() {
+        //     return `sw-blog-detail--${this.blog.id}`;
+        // },
 
         tooltipSave() {
             if (this.acl.can('blog_finder.editor')) {
@@ -102,8 +127,6 @@ Component.register('sw-blog-detail', {
                 appearance: 'light',
             };
         },
-
-        ...mapPropertyErrors('blog', ['name']),
     },
 
     watch: {
@@ -118,6 +141,13 @@ Component.register('sw-blog-detail', {
 
     methods: {
         createdComponent() {
+
+            this.billingProducts = new EntityCollection(
+                this.productRepository.route,
+                this.productRepository.entityName,
+                // Context.api,
+            );
+
             Shopware.ExtensionAPI.publishData({
                 id: 'sw-blog-detail__blog',
                 path: 'blog',
@@ -130,10 +160,33 @@ Component.register('sw-blog-detail', {
 
             Shopware.State.commit('context/resetLanguageToDefault');
             this.blog = this.blogRepository.create();
+
+        },
+        setProductIds(products) {
+            this.productIds = products.getIds();
+            this.billingProducts = products;
+            this.blog.products = products;
         },
 
         async loadEntityData() {
             this.isLoading = true;
+            const blogCriteria = new Criteria();
+            blogCriteria.addFilter(Criteria.equals('id',this.blogId))
+            blogCriteria.addAssociation('products');
+
+            this.blogRepository.search(blogCriteria).then((res) =>{
+                this.blog =res[0];
+                this.billingProducts = this.blog.products;
+            }).catch((exception) => {
+                this.isLoading = false;
+                this.createNotificationError({
+                    message: this.$tc(
+                        'global.notification.notificationSaveErrorMessageRequiredFieldsInvalid',
+                    ),
+                });
+                throw exception;
+            });
+
 
             const [blogResponse, customFieldResponse] = await Promise.allSettled([
                 this.blogRepository.get(this.blogId),
@@ -171,25 +224,26 @@ Component.register('sw-blog-detail', {
             this.loadEntityData();
         },
 
-        setMediaItem({ targetId }) {
-            this.blog.mediaId = targetId;
-        },
 
-        setMediaFromSidebar(media) {
-            this.blog.mediaId = media.id;
-        },
+        // setMediaItem({ targetId }) {
+        //     this.blog.mediaId = targetId;
+        // },
 
-        onUnlinkLogo() {
-            this.blog.mediaId = null;
-        },
+        // setMediaFromSidebar(media) {
+        //     this.blog.mediaId = media.id;
+        // },
 
-        openMediaSidebar() {
-            this.$refs.mediaSidebarItem.openContent();
-        },
+        // onUnlinkLogo() {
+        //     this.blog.mediaId = null;
+        // },
 
-        onDropMedia(dragData) {
-            this.setMediaItem({ targetId: dragData.id });
-        },
+        // openMediaSidebar() {
+        //     this.$refs.mediaSidebarItem.openContent();
+        // },
+        //
+        // onDropMedia(dragData) {
+        //     this.setMediaItem({ targetId: dragData.id });
+        // },
 
         onSave() {
             if (!this.acl.can('blog_finder.editor')) {
@@ -197,12 +251,12 @@ Component.register('sw-blog-detail', {
             }
 
             this.isLoading = true;
-
+            // console.log(this.blog);
             this.blogRepository.save(this.blog).then(() => {
                 this.isLoading = false;
                 this.isSaveSuccessful = true;
                 if (this.blogId === null) {
-                    this.$router.push({ name: 'sw.blog.detail', params: { id: this.blog.id } });
+                    this.$router.push({ name: 'sw.blog.list', params: { id: this.blog.id } });
                     return;
                 }
 
