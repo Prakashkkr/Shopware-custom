@@ -61,10 +61,9 @@ Component.register('sw-blog-detail', {
             set(productIds) {
                 // this.ensureValueExist();
                 this.blog.value = { ...this.blog.products, productIds };
-                // console.log(this.blog);
             },
         },
-        ...mapPropertyErrors('condition', ['value.operator', 'value.productIds']),
+        // ...mapPropertyErrors('condition', ['value.operator', 'value.productIds']),
 
         // currentError() {
         //     return this.conditionValueOperatorError || this.conditionValueManufacturerIdsError;
@@ -127,6 +126,7 @@ Component.register('sw-blog-detail', {
                 appearance: 'light',
             };
         },
+        ...mapPropertyErrors('blog', ['name']),
     },
 
     watch: {
@@ -251,7 +251,6 @@ Component.register('sw-blog-detail', {
             }
 
             this.isLoading = true;
-            // console.log(this.blog);
             this.blogRepository.save(this.blog).then(() => {
                 this.isLoading = false;
                 this.isSaveSuccessful = true;

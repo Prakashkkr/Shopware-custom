@@ -93,9 +93,9 @@
                             :label="$tc('sw-blog.detail.labelName')"
                             :placeholder="placeholder(blog, 'name', $tc('sw-blog.detail.placeholderName'))"
                             name="name"
-{#                            validation="required"#}
-{#                            required#}
-{#                            :error="blogNameError"#}
+                            validation="required"
+                            required
+                            :error="blogNameError"
                             :disabled="!acl.can('blog_finder.editor')"
                         />
                         {% endblock %}
