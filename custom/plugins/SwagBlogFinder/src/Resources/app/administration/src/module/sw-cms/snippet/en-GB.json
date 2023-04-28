@@ -1,0 +1,16 @@
+{
+  "sw-cms": {
+    "blocks": {
+      "blogText": {
+        "label": "Blog text"
+      }
+    }
+  },
+  "sw-privileges": {
+    "permissions": {
+      "cms": {
+        "label": ""
+      }
+    }
+  }
+}

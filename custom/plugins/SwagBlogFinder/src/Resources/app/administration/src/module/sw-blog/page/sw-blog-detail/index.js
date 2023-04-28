@@ -55,19 +55,13 @@ Component.register('sw-blog-detail', {
         },
         productIds: {
             get() {
-                // this.ensureValueExist();
                 return this.blog.products || [];
             },
             set(productIds) {
-                // this.ensureValueExist();
                 this.blog.value = { ...this.blog.products, productIds };
             },
         },
-        // ...mapPropertyErrors('condition', ['value.operator', 'value.productIds']),
 
-        // currentError() {
-        //     return this.conditionValueOperatorError || this.conditionValueManufacturerIdsError;
-        // },
         blogIsLoading() {
             return this.isLoading || this.blog == null;
         },
@@ -79,11 +73,6 @@ Component.register('sw-blog-detail', {
             const criteria = new Criteria(1, 25);
             return criteria;
         },
-
-
-        // mediaRepository() {
-        //     return this.repositoryFactory.create('media');
-        // },
 
         customFieldSetRepository() {
             return this.repositoryFactory.create('custom_field_set');
@@ -97,10 +86,6 @@ Component.register('sw-blog-detail', {
 
             return criteria;
         },
-
-        // mediaUploadTag() {
-        //     return `sw-blog-detail--${this.blog.id}`;
-        // },
 
         tooltipSave() {
             if (this.acl.can('blog_finder.editor')) {
@@ -223,27 +208,6 @@ Component.register('sw-blog-detail', {
         onChangeLanguage() {
             this.loadEntityData();
         },
-
-
-        // setMediaItem({ targetId }) {
-        //     this.blog.mediaId = targetId;
-        // },
-
-        // setMediaFromSidebar(media) {
-        //     this.blog.mediaId = media.id;
-        // },
-
-        // onUnlinkLogo() {
-        //     this.blog.mediaId = null;
-        // },
-
-        // openMediaSidebar() {
-        //     this.$refs.mediaSidebarItem.openContent();
-        // },
-        //
-        // onDropMedia(dragData) {
-        //     this.setMediaItem({ targetId: dragData.id });
-        // },
 
         onSave() {
             if (!this.acl.can('blog_finder.editor')) {

@@ -84,7 +84,6 @@
                     gap="0 30px"
                 >
                     <div class="sw-blog-detail__base-info-wrapper">
-
                         <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
                         {% block sw_blog_detail_base_info_field_name %}
                         <sw-field
@@ -99,7 +98,6 @@
                             :disabled="!acl.can('blog_finder.editor')"
                         />
                         {% endblock %}
-
                     </div>
                     {% block sw_blog_detail_base_info_field_release_date%}
                         <sw-field
@@ -128,10 +126,7 @@
                                 :disabled="!acl.can('blog_finder.editor')"
                         />
                     {% endblock %}
-
-
                 </sw-container>
-
 
                 {% block sw_blog_detail_base_info_category_field %}
                     <sw-entity-single-select
